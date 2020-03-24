@@ -1,4 +1,9 @@
-import { Controller } from '@nestjs/common';
-
+import { Controller, Get } from '@nestjs/common';
+import { Libro } from '../libro';
 @Controller('libro')
-export class LibroController {}
+export class LibroController {
+	@Get()
+	findAll():Libro[] {
+		return [];
+	}
+}
