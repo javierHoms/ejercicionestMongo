@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "93bcc422-c0d5-4cc8-970a-e4599c56d36c",
+		"name": "ejercicionest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listar libros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/libro",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"libro"
+					]
+				},
+				"description": "find all elements"
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar libro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 3,\n\t\"titulo\": \"Nuevo título\",\n\t\"autor\": \"Autor\",\n\t\"fecha\": \"2014-01-01T23:28:56.782Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/libro",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"libro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar libro",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/libro/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"libro",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar libro",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 3,\n\t\"titulo\": \"Nuevo título\",\n\t\"autor\": \"Nuevo Autor\",\n\t\"fecha\": \"2014-01-01T23:28:56.782Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/libro/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"libro",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Libro",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/libro/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"libro",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
