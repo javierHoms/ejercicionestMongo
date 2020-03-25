@@ -1,4 +1,4 @@
-import { Controller, Param,  Get } from '@nestjs/common';
+import { Controller, Param,  Get, Body, Post } from '@nestjs/common';
 import { Libro } from '../libro';
 @Controller('libro')
 export class LibroController {
@@ -8,29 +8,46 @@ export class LibroController {
 	findAll():Libro[] {
 		
 		return this.libros;
-	}
+	} // end findAll
 	
 	
 	@Get('/:id')
 	getById(@Param() params): Libro {
 		
 		let found: boolean = false;
-		let id: number = undefined;
 		
+		var id: number = params.id;
 		for(let i = 0; i < this.libros.length && !found; i++){
 			if (params.id == this.libros[i].id){
 				found = true;
 				id = i;
 			}
 		}
-
+		
 		if (found){
 			return this.libros[id];
 		}else{
 			return null;
 		}
 		
-	}
+	} // end getById
+	
+	@Post()
+	addBook(@Body() newBook: Libro): Libro {
+		
+		let found: boolean = false;
+		console.log(newBook.id);
+		var id: number = newBook.id;
+		found = this.libros.some(function(libro: Libro){
+			return libro.id == id ;
+		});
+		if (found){
+			return null;
+		}else{
+			this.libros.push(newBook);
+			return newBook;
+		}
+	} //end addBook
 	
 	
 }
