@@ -18,7 +18,7 @@ export class LibroController {
 		
 		let found: boolean = false;
 		
-		var id: number = params.id;
+		let id: number = params.id;
 		for(let i = 0; i < this.libros.length && !found; i++){
 			if (params.id == this.libros[i].id){
 				found = true;
@@ -40,7 +40,7 @@ export class LibroController {
 	addBook(@Body() newBook: Libro): Libro {
 		
 		let found: boolean = false;
-		var id: number = newBook.id;
+		let id: number = newBook.id;
 		found = this.libros.some(function(libro: Libro){
 			return libro.id == id ;
 		});
@@ -58,7 +58,7 @@ export class LibroController {
 		
 		let found: boolean = false;
 		
-		var id: number = params.id;
+		let id: number = params.id;
 		for(let i = 0; i < this.libros.length && !found; i++){
 			if (params.id == this.libros[i].id){
 				found = true;
@@ -78,7 +78,7 @@ export class LibroController {
 	deleteById(@Param() params): Libro {
 		let found: boolean = false;
 		let deletedBook: Libro;
-		var id: number = params.id;
+		let id: number = params.id;
 		for(let i = 0; i < this.libros.length && !found; i++){
 			if (params.id == this.libros[i].id){
 				found = true;
