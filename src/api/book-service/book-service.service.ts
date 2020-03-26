@@ -27,7 +27,7 @@ export class BookServiceService {
         });
         if (index == -1){
             oneBook.status = -3;
-            oneBook.message = 'The book does not exist';
+            oneBook.message = 'The book with id:'+ id+ ' does not exist';
             oneBook.book = null;
         } else {
             oneBook.status = 0;
@@ -64,7 +64,7 @@ export class BookServiceService {
         });
         if (index == -1){
             oneBook.status = -3;
-            oneBook.message = 'The book does not exist';
+            oneBook.message = 'The book with id:'+ updateBook.id+ ' does not exist';
         } else {
             oneBook.status = 0;
             oneBook.message = 'Ok';
@@ -82,7 +82,7 @@ export class BookServiceService {
         });
         if (index == -1){
             oneBook.status = -3;
-            oneBook.message = 'The book does not exist';
+            oneBook.message = 'The book with id:'+ id+ ' does not exist';
             oneBook.book = null;
         } else {
             oneBook.status = 0;
