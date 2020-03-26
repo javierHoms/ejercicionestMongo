@@ -1,15 +1,46 @@
 import { Controller, Param,  Get, Body, Post, Put, Delete } from '@nestjs/common';
 import { Libro } from '../libro';
+import { BookList } from '../book-list';
+import { BookServiceService } from '../book-service/book-service.service';
+import { OneBook } from '../one-book';
 
 @Controller('libro')
 export class LibroController {
-	books: Libro[] = [{'id':1, 'titulo':'Don Quijote de la Mancha','autor':'Cervantes','fecha':new Date(1605,1,1,0,0,0,0)}, 
-				{'id':2, 'titulo':'La Colmena','autor':'Camilo José Cela','fecha':new Date(1951,1,1,0,0,0,0)}];
+	constructor(private bookService: BookServiceService){
+	}
 	// Get all books
+	@Get()					
+	findAll():BookList {
+		return this.bookService.getBooks();
+	} // end find all books
+
+	// Get one book by id
+	@Get('/:id')
+	getById(@Param() param): OneBook{
+		return this.bookService.getBookById(param.id);
+	} // end find by id
+
+	// Add book
+	@Post()
+	addBook(@Body() newBook: Libro) :OneBook{
+		return this.bookService.addBook(newBook);
+	} // end add book
+
+	// Modify book
+	@Put()
+	modifyBookById(@Body() updateBook: Libro): OneBook {
+		return this.bookService.modifyBookById(updateBook);
+	} //end modify book
+
+	@Delete('/:id')
+	deleteBook(@Param() param): OneBook {
+		return this.bookService.deleteBookById(param.id);
+	}
+	/*
 	@Get()					
 	findAll():Libro[] {
 		
-		return this.books;
+		return this.bookService.getBooks();
 	} // end findAll
 	
 	// Get book
@@ -95,7 +126,7 @@ export class LibroController {
 		}
 	} // end modifyById
 	
+	*/
 	
-	// Auxiliary function
 
 }
