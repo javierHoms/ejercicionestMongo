@@ -10,7 +10,7 @@ export class LibroController {
 	}
 	// Get all books
 	@Get()					
-	findAll():Promise<BookList> {
+	findAll():Promise<Libro[]> {
 		return this.bookService.getBooks();
 	} // end find all books
 
@@ -18,7 +18,7 @@ export class LibroController {
 	@Get('/:id')
 	getById(@Param() param): OneBook{
 		return this.bookService.getBookById(param.id);
-	} // end find by id
+	}  // end find by id
 
 	// Add book
 	@Post()

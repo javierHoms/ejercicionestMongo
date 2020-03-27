@@ -2,7 +2,7 @@ import { IsInt, IsString, IsDate } from 'class-validator';
 export class BookDto {
     
     @IsInt()
-    _id: number;
+    id: number;
 
     @IsString()
     titulo: string;

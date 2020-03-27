@@ -18,17 +18,12 @@ export class BookServiceService {
     }
 
     // Get all books from Mongo
-    async getBooks(): Promise<BookList> {
-        const books = new BookList();
-        books.status = 0;
-        books.message = 'Ok';
-        books.books = this.findAllBooks();
-        return books;
+    async getBooks(): Promise<Libro[]> {
+    
+        return  await this.modelo.find().exec();
     } //end find all books
 
-    private async findAllBooks(): Promise<Libro[]> {
-        return await this.modelo.find().exec().then(function(){console.log('OK');},function(){console.log('Mal');});
-    }
+   
 
 /*
     // Get all books
