@@ -10,7 +10,7 @@ export class LibroController {
 	}
 	// Get all books
 	@Get()					
-	findAll():BookList {
+	findAll():Promise<BookList> {
 		return this.bookService.getBooks();
 	} // end find all books
 

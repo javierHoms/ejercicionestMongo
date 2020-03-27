@@ -2,14 +2,35 @@ import { Injectable } from '@nestjs/common';
 import { Libro } from '../libro';
 import { BookList } from '../book-list';
 import { OneBook } from '../one-book';
+import { BookDto } from '../book-dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
 @Injectable()
 
 
 export class BookServiceService {
     private books: Libro[] = [{'id':1, 'titulo':'Don Quijote de la Mancha','autor':'Cervantes','fecha':new Date(1605,1,1,0,0,0,0)}, 
                 {'id':2, 'titulo':'La Colmena','autor':'Camilo José Cela','fecha':new Date(1951,1,1,0,0,0,0)}];
-           
+     
+    constructor(@InjectModel('Book') private readonly modelo: Model<BookDto>) {
+        // El contenido de InjectModel debe coincidir con la definición del Schma
+    }
 
+    // Get all books from Mongo
+    async getBooks(): Promise<BookList> {
+        const books = new BookList();
+        books.status = 0;
+        books.message = 'Ok';
+        books.books = this.findAllBooks();
+        return books;
+    } //end find all books
+
+    private async findAllBooks(): Promise<Libro[]> {
+        return await this.modelo.find().exec().then(function(){console.log('OK');},function(){console.log('Mal');});
+    }
+
+/*
     // Get all books
     getBooks(): BookList {
         const books = new BookList();
@@ -18,7 +39,7 @@ export class BookServiceService {
         books.books = this.books;
         return books;
     } // end getBooks
-
+*/
     // Get one Book
     getBookById(id: number): OneBook {
         const oneBook = new OneBook();
