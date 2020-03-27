@@ -19,11 +19,29 @@ export class BookServiceService {
 
     // Get all books from Mongo
     async getBooks(): Promise<Libro[]> {
-    
         return  await this.modelo.find().exec();
     } //end find all books
 
-   
+    async create(book: Libro): Promise<Libro> {
+        const createBook = new this.modelo(book);
+        return await createBook.save();
+    }
+    //este id es _id realmente
+    async findById(id: string): Promise<Libro> {
+        return await this.modelo.findById(id);
+    }
+
+    async updateById(book: Libro): Promise<Libro> {
+        const cambios = { titulo: book.titulo, autor: book.autor, fecha: book.fecha};
+        await this.modelo.updateOne({ id : book.id }, cambios);
+        return this.modelo.find({id: book.id});
+    }
+
+    async delete(id: string): Promise<Libro> {
+        const book = await this.modelo.findById(id);
+        await this.modelo.findOneAndRemove({ id : id });
+        return book;
+    }
 
 /*
     // Get all books
@@ -34,7 +52,7 @@ export class BookServiceService {
         books.books = this.books;
         return books;
     } // end getBooks
-*/
+
     // Get one Book
     getBookById(id: number): OneBook {
         const oneBook = new OneBook();
@@ -108,5 +126,5 @@ export class BookServiceService {
         }
         return oneBook;
     }
-
+*/
 }
